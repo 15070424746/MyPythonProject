@@ -6,6 +6,7 @@
 *.npy
 *.zip
 *.pyc
+
 /GitHubProject/RobustVideoMatting/weights/*.pth
 /GitHubProject/RealESRGAN/experiments/pretrained_models/*.pth
 /GitHubProject/RealESRGAN/realesrgan/weights/*.pth

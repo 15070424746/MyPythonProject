@@ -3,6 +3,7 @@ import cv2
 import glob
 import numpy as np
 import os
+import sys
 import torch
 from basicsr.utils import imwrite
 from gfpgan import GFPGANer
@@ -16,15 +17,14 @@ def main():
         '-i',
         '--input',
         type=str,
-        default='inputs/whole_imgs',
-        help='Input image or folder. Default: inputs/whole_imgs')
+        default='inputs',
+        help='Input image or folder. Default: inputs')
     parser.add_argument('-o', '--output', type=str, default='results', help='Output folder. Default: results')
     # we use version to select models, which is more user-friendly
     parser.add_argument(
         '-v', '--version', type=str, default='1.3', help='GFPGAN model version. Option: 1 | 1.2 | 1.3. Default: 1.3')
     parser.add_argument(
         '-s', '--upscale', type=int, default=2, help='The final upsampling scale of the image. Default: 2')
-
     parser.add_argument(
         '--bg_upsampler', type=str, default='realesrgan', help='background upsampler. Default: realesrgan')
     parser.add_argument(
@@ -55,23 +55,18 @@ def main():
 
     # ------------------------ set up background upsampler ------------------------
     if args.bg_upsampler == 'realesrgan':
-        if not torch.cuda.is_available():  # CPU
-            import warnings
-            warnings.warn('The unoptimized RealESRGAN is slow on CPU. We do not use it. '
-                          'If you really want to use it, please modify the corresponding codes.')
-            bg_upsampler = None
-        else:
-            from basicsr.archs.rrdbnet_arch import RRDBNet
-            from RealESRGAN.realesrgan import RealESRGANer
-            model = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64, num_block=23, num_grow_ch=32, scale=2)
-            bg_upsampler = RealESRGANer(
-                scale=2,
-                model_path='RealESRGAN/experiments/pretrained_models/RealESRGAN_x2plus.pth',
-                model=model,
-                tile=args.bg_tile,
-                tile_pad=10,
-                pre_pad=0,
-                half=True)  # need to set False in CPU mode
+        from basicsr.archs.rrdbnet_arch import RRDBNet
+        sys.path.extend(["/Users/WangHao/学习/PyCharm/GitHubProject/RealESRGAN"])
+        from RealESRGAN.realesrgan.utils import RealESRGANer
+        model = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64, num_block=23, num_grow_ch=32, scale=2)
+        bg_upsampler = RealESRGANer(
+            scale=2,
+            model_path='/Users/WangHao/学习/PyCharm/GitHubProject/RealESRGAN/experiments/pretrained_models/RealESRGAN_x2plus.pth',
+            model=model,
+            tile=args.bg_tile,
+            tile_pad=10,
+            pre_pad=0,
+            half=False)  # need to set False in CPU mode
     else:
         bg_upsampler = None
 
@@ -92,9 +87,9 @@ def main():
         raise ValueError(f'Wrong model version {args.version}.')
 
     # determine model paths
-    model_path = os.path.join('gfpgan/weights', model_name + '.pth')
+    model_path = os.path.join('experiments/pretrained_models', model_name + '.pth')
     if not os.path.isfile(model_path):
-        model_path = os.path.join('realesrgan/weights', model_name + '.pth')
+        model_path = os.path.join('gfpgan/weights', model_name + '.pth')
     if not os.path.isfile(model_path):
         raise ValueError(f'Model {model_name} does not exist.')
 

@@ -32,9 +32,10 @@ Usage: python inference_gfpgan.py -i inputs/whole_imgs -o results -v 1.3 -s 2 [o
 |  V1.3   | ✓ natural outputs<br> ✓better results on very low-quality inputs <br> ✓ work on relatively high-quality inputs <br>✓ can have repeated (twice) restorations | ✗ not very sharp <br> ✗ have a slight change on identity |
 |  V1.2   |          ✓ sharper output <br> ✓ with beauty makeup          |               ✗ some outputs are unnatural               |
 
-- [GFPGANv1.pth](https://github.com/TencentARC/GFPGAN/releases/download/v0.1.0/GFPGANv1.pth)
+- [GFPGANv1.pth](https://github.com/TencentARC/GFPGAN/releases/download/v0.1.0/GFPGANv1.pth) with colorization and need cuda 
+  support
 - [GFPGANCleanv1-NoCE-C2.pth](https://github.com/TencentARC/GFPGAN/releases/download/v0.2.0/GFPGANCleanv1-NoCE-C2.pth)
-- [GFPGANv1.3.pth](https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.3.pth) with colorization
+- [GFPGANv1.3.pth](https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.3.pth) 
 
 For the following images, you may need to **zoom in** for comparing details, or **click the image** to see in the full size.
 
