@@ -1,0 +1,16 @@
+# ignored folders
+.DS_Store
+.vscode
+.idea
+*.pth
+*.npy
+*.zip
+*.pyc
+/GitHubProject/RobustVideoMatting/weights/*.pth
+/GitHubProject/RealESRGAN/experiments/pretrained_models/*.pth
+/GitHubProject/RealESRGAN/realesrgan/weights/*.pth
+/GitHubProject/opticalCNN/assets/*.npy
+/GitHubProject/opticalCNN/assets/*.zip
+/GitHubProject/GFPGAN/experiments/pretrained_models/*.pth
+/GitHubProject/GFPGAN/gfpgan/weights/*.pth
+
