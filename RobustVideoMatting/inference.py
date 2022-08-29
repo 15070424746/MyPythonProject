@@ -21,6 +21,7 @@ from tqdm.auto import tqdm
 
 from inference_utils import VideoReader, VideoWriter, ImageSequenceReader, ImageSequenceWriter
 
+
 def convert_video(model,
                   input_source: str,
                   input_resize: Optional[Tuple[int, int]] = None,
@@ -174,22 +175,27 @@ if __name__ == '__main__':
     from model import MattingNetwork
     
     parser = argparse.ArgumentParser()
-    parser.add_argument('--variant', type=str, required=True, choices=['mobilenetv3', 'resnet50'])
-    parser.add_argument('--checkpoint', type=str, required=True)
-    parser.add_argument('--device', type=str, required=True)
-    parser.add_argument('--input-source', type=str, required=True)
+    parser.add_argument('--variant', type=str, required=True, choices=['mobilenetv3', 'resnet50'], default='mobilenetv3')
+    parser.add_argument('--checkpoint', type=str, required=True, default=None)
+    parser.add_argument('--device', type=str, required=True, default='cpu')
+    parser.add_argument('--input-source', type=str, required=True, default=None)
     parser.add_argument('--input-resize', type=int, default=None, nargs=2)
     parser.add_argument('--downsample-ratio', type=float)
     parser.add_argument('--output-composition', type=str)
     parser.add_argument('--output-alpha', type=str)
     parser.add_argument('--output-foreground', type=str)
-    parser.add_argument('--output-type', type=str, required=True, choices=['video', 'png_sequence'])
+    parser.add_argument('--output-type', type=str, required=True, choices=['video', 'png_sequence'], default='video')
     parser.add_argument('--output-video-mbps', type=int, default=1)
     parser.add_argument('--seq-chunk', type=int, default=1)
     parser.add_argument('--num-workers', type=int, default=0)
     parser.add_argument('--disable-progress', action='store_true')
     args = parser.parse_args()
-    
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument('--variant', type=str, default='resnet50')
+    # parser.add_argument('--checkpoint', type=str, default=None)
+    # parser.add_argument('--device', type=str, default='cpu')
+    # args = parser.parse_args()
+
     converter = Converter(args.variant, args.checkpoint, args.device)
     converter.convert(
         input_source=args.input_source,

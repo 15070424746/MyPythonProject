@@ -4,7 +4,6 @@ import glob
 import numpy as np
 import os
 import sys
-import torch
 from basicsr.utils import imwrite
 from gfpgan import GFPGANer
 
@@ -22,7 +21,7 @@ def main():
     parser.add_argument('-o', '--output', type=str, default='results', help='Output folder. Default: results')
     # we use version to select models, which is more user-friendly
     parser.add_argument(
-        '-v', '--version', type=str, default='1.3', help='GFPGAN model version. Option: 1 | 1.2 | 1.3. Default: 1.3')
+        '-v', '--version', type=str, default='1.2', help='GFPGAN model version. Option: 1 | 1.2 | 1.3. Default: 1.3')
     parser.add_argument(
         '-s', '--upscale', type=int, default=2, help='The final upsampling scale of the image. Default: 2')
     parser.add_argument(

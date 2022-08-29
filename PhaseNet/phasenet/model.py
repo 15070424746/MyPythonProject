@@ -124,7 +124,6 @@ class Data:
 
         return psf, phi.amplitudes_requested
 
-
     def generator(self):
         while True:
             psfs, amplitudes = zip(*(self._single_psf() for _ in range(self.batch_size)))
