@@ -470,6 +470,7 @@ batch = 1
 num_inference_steps = 75
 guidance_scale = 7.5 
 generator = torch.Generator(device=device).manual_seed(51)
+save_path = "results"
 ```
 
 
