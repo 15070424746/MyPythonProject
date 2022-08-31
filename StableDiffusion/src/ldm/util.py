@@ -170,7 +170,7 @@ def parallel_data_prefetch(
 
         k = 0
         while k < n_proc:
-            # get result
+            # get results
             res = Q.get()
             if res == "Done":
                 k += 1

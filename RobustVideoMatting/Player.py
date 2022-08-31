@@ -5,7 +5,7 @@ from inference_utils import VideoReader, VideoWriter
 from model import MattingNetwork
 
 model = MattingNetwork(variant='resnet50').eval()  # 或 variant="resnet50"
-weights = torch.load('/Users/WangHao/学习/PyCharm/GitHubProject/RobustVideoMatting/weights/rvm_resnet50.pth')
+weights = torch.load('/Users/WangHao/学习/PyCharm/stablediffusion/RobustVideoMatting/weights/rvm_resnet50.pth')
 model.load_state_dict(weights)
 
 reader = VideoReader('/Users/WangHao/Desktop/屏幕录制2022-07-22 22.55.53.mov', transform=ToTensor())

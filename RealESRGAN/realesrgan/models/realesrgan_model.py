@@ -105,7 +105,7 @@ class RealESRGANModel(SRGANModel):
                     rounds=False)
             # JPEG compression
             jpeg_p = out.new_zeros(out.size(0)).uniform_(*self.opt['jpeg_range'])
-            out = torch.clamp(out, 0, 1)  # clamp to [0, 1], otherwise JPEGer will result in unpleasant artifacts
+            out = torch.clamp(out, 0, 1)  # clamp to [0, 1], otherwise JPEGer will results in unpleasant artifacts
             out = self.jpeger(out, quality=jpeg_p)
 
             # ----------------------- The second degradation process ----------------------- #

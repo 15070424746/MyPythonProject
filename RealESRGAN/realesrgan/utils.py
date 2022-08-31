@@ -18,7 +18,7 @@ class RealESRGANer():
         scale (int): Upsampling scale factor used in the networks. It is usually 2 or 4.
         model_path (str): The path to the pretrained model. It can be urls (will first download it automatically).
         model (nn.Module): The defined network. Default: None.
-        tile (int): As too large images result in the out of GPU memory issue, so this tile option will first crop
+        tile (int): As too large images results in the out of GPU memory issue, so this tile option will first crop
             input images into tiles, and then process each of them. Finally, they will be merged into one image.
             0 denotes for do not use tile. Default: 0.
         tile_pad (int): The pad size for each tile, to remove border artifacts. Default: 10.

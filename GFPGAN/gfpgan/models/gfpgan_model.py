@@ -546,7 +546,7 @@ class GFPGANModel(BaseModel):
         if with_metrics:
             for metric in self.metric_results.keys():
                 self.metric_results[metric] /= (idx + 1)
-                # update the best metric result
+                # update the best metric results
                 self._update_best_metric_result(dataset_name, metric, self.metric_results[metric], current_iter)
 
             self._log_validation_metric_values(current_iter, dataset_name, tb_logger)
